@@ -62,6 +62,7 @@ app/
 components/
   ActivityCard.tsx
   Button.tsx
+  CondominiumCarousel.tsx
   ContactCTA.tsx
   FloatingWhatsApp.tsx
   Footer.tsx
@@ -79,9 +80,9 @@ lib/
 - Textos principais da página ficam em `app/page.tsx`.
 - Contatos, Instagram, e-mail e WhatsApp ficam centralizados em `lib/site.ts`.
 - Cores, espaçamentos, animações e ajustes responsivos ficam em `app/globals.css`.
-- As fotos atuais da equipe são `karinafoto.png` e `patriciafoto.png`.
+- As fotos atuais da equipe estão em `public/images/karinafoto.png` e `public/images/patriciafoto.png`.
 - A imagem principal do hero está em `public/images/hero-condo.jpg`.
-- A referência visual extraída do Lovable fica em `lovable-ref/` e está excluída da checagem TypeScript do projeto principal.
+- As futuras fotos dos condomínios devem ser adicionadas em `public/images/condominios/`.
 
 ## Escopo desta fase
 

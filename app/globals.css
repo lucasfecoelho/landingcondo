@@ -48,7 +48,7 @@ body {
 }
 
 .section-padding {
-  padding-block: clamp(4.5rem, 7vw, 7rem);
+  padding-block: clamp(4.25rem, 6.5vw, 6.5rem);
 }
 
 .eyebrow {
@@ -74,29 +74,6 @@ body {
   background: rgba(10, 23, 43, 0.84);
   box-shadow: 0 18px 42px rgba(6, 14, 27, 0.16);
   backdrop-filter: blur(18px);
-}
-
-.brand-mark {
-  display: grid;
-  height: 2.7rem;
-  width: 2.7rem;
-  place-items: center;
-  border-radius: 0.9rem;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
-    var(--primary);
-  color: var(--gold);
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  box-shadow: 0 16px 32px rgba(10, 23, 43, 0.18);
-}
-
-.brand-mark-muted {
-  height: 2.35rem;
-  width: 2.35rem;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none;
 }
 
 .nav-link {
@@ -190,7 +167,7 @@ body {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(10, 23, 43, 0.94) 0%, rgba(10, 23, 43, 0.82) 48%, rgba(10, 23, 43, 0.42) 100%),
+    linear-gradient(90deg, rgba(10, 23, 43, 0.94) 0%, rgba(14, 32, 58, 0.84) 48%, rgba(18, 37, 66, 0.42) 100%),
     linear-gradient(180deg, rgba(10, 23, 43, 0.16), rgba(10, 23, 43, 0.38));
 }
 
@@ -240,37 +217,49 @@ body {
   line-height: 1.9;
 }
 
-.about-copy p + p {
-  margin-top: 1.25rem;
-}
-
 .about-copy strong {
   color: var(--foreground);
   font-weight: 700;
 }
 
-.highlight-card {
-  display: flex;
-  min-height: 5.4rem;
-  align-items: center;
-  gap: 1rem;
+.about-feature {
+  position: relative;
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.76);
-  padding: 1.2rem 1.25rem;
+  border-radius: 1.35rem;
+  background: rgba(255, 255, 255, 0.84);
+  padding: clamp(1.35rem, 3vw, 1.9rem);
   box-shadow: 0 16px 36px rgba(18, 37, 66, 0.05);
 }
 
-.highlight-card span {
-  color: var(--gold-strong);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+.about-feature + .about-feature {
+  margin-top: 1rem;
 }
 
-.highlight-card strong {
-  color: var(--foreground);
-  font-size: 1rem;
+.about-feature::before {
+  position: absolute;
+  inset: 1rem auto 1rem 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold), rgba(211, 176, 111, 0));
+  content: "";
+}
+
+.about-feature-muted {
+  background: rgba(244, 241, 234, 0.58);
+}
+
+.about-feature p + p {
+  margin-top: 1rem;
+}
+
+.about-kicker {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  color: var(--gold-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .objective-section,
@@ -293,6 +282,47 @@ body {
   background-size: 4rem 4rem;
   content: "";
   mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.objective-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.8rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+    rgba(255, 255, 255, 0.04);
+  padding: clamp(1.7rem, 5vw, 3rem);
+  box-shadow: 0 28px 70px rgba(6, 14, 27, 0.22);
+}
+
+.objective-card .max-w-3xl {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
+}
+
+.objective-card p + p {
+  margin-top: 1rem;
+}
+
+.objective-target {
+  position: absolute;
+  top: 50%;
+  right: clamp(1.4rem, 5vw, 3.4rem);
+  z-index: 0;
+  color: var(--gold);
+  opacity: 0.16;
+  transform: translateY(-50%);
+}
+
+.objective-target svg {
+  width: clamp(8rem, 19vw, 15rem);
+  height: clamp(8rem, 19vw, 15rem);
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.1;
 }
 
 .activity-card {
@@ -325,8 +355,7 @@ body {
   color: var(--gold);
 }
 
-.activity-icon svg,
-.condominium-icon svg {
+.activity-icon svg {
   height: 1.3rem;
   width: 1.3rem;
   stroke: currentColor;
@@ -425,98 +454,217 @@ body {
   line-height: 1;
 }
 
-.condominium-card {
+.condominium-carousel {
+  margin-top: 2.5rem;
+}
+
+.condominium-carousel-frame {
   position: relative;
-  min-height: 11.5rem;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 1.45rem;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1.45rem;
-  box-shadow: 0 16px 38px rgba(18, 37, 66, 0.05);
-  transition:
-    border-color 220ms ease,
-    box-shadow 220ms ease,
-    transform 220ms ease;
 }
 
-.condominium-card::before {
+.condominium-carousel-controls {
+  pointer-events: none;
   position: absolute;
-  top: -3rem;
-  right: -2.4rem;
-  height: 8rem;
-  width: 8rem;
-  border-radius: 999px;
-  background: rgba(211, 176, 111, 0.12);
-  content: "";
-  opacity: 0;
-  transition: opacity 220ms ease;
+  inset: 0 0 0.8rem;
+  z-index: 3;
 }
 
-.condominium-card:hover {
-  border-color: rgba(18, 37, 66, 0.18);
-  box-shadow: 0 24px 48px rgba(18, 37, 66, 0.1);
-  transform: translateY(-4px);
-}
-
-.condominium-card:hover::before {
-  opacity: 1;
-}
-
-.condominium-icon {
+.condominium-arrow {
+  pointer-events: auto;
+  position: absolute;
+  top: 50%;
   display: grid;
   height: 3rem;
   width: 3rem;
   place-items: center;
-  border-radius: 1rem;
-  background: rgba(18, 37, 66, 0.06);
+  border: 1px solid rgba(18, 37, 66, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
   color: var(--primary);
+  box-shadow: 0 16px 34px rgba(18, 37, 66, 0.14);
+  transform: translateY(-50%);
   transition:
+    border-color 220ms ease,
     background-color 220ms ease,
-    color 220ms ease;
+    color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
-.condominium-card:hover .condominium-icon {
-  background: var(--primary);
-  color: var(--gold);
+.condominium-arrow:hover {
+  border-color: rgba(211, 176, 111, 0.72);
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--gold-strong);
+  box-shadow: 0 20px 40px rgba(168, 126, 63, 0.2);
+  transform: translateY(-50%) scale(1.04);
 }
 
-.condominium-card h3 {
-  margin-top: 1.15rem;
+.condominium-arrow-previous {
+  left: clamp(0.35rem, 1.4vw, 0.9rem);
+}
+
+.condominium-arrow-next {
+  right: clamp(0.35rem, 1.4vw, 0.9rem);
+}
+
+.condominium-arrow svg {
+  height: 1.1rem;
+  width: 1.1rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.condominium-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.15rem 0.1rem 0.8rem;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(18, 37, 66, 0.26) transparent;
+}
+
+.condominium-track::-webkit-scrollbar {
+  height: 0.45rem;
+}
+
+.condominium-track::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(18, 37, 66, 0.22);
+}
+
+.condominium-slide {
+  position: relative;
+  min-height: 22rem;
+  min-width: min(82vw, 20rem);
+  flex: 0 0 min(82vw, 20rem);
+  overflow: hidden;
+  border-radius: 1.65rem;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(211, 176, 111, 0.26), transparent 10rem),
+    linear-gradient(135deg, var(--primary-deep), var(--primary));
+  box-shadow: 0 22px 48px rgba(18, 37, 66, 0.14);
+  scroll-snap-align: start;
+  transition:
+    box-shadow 260ms ease,
+    transform 260ms ease;
+}
+
+.condominium-slide:hover {
+  box-shadow: 0 28px 58px rgba(18, 37, 66, 0.2);
+  transform: translateY(-4px);
+}
+
+.condominium-photo {
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.condominium-slide:hover .condominium-photo {
+  transform: scale(1.04);
+}
+
+.condominium-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: end start;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.condominium-placeholder::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 2.8rem 2.8rem;
+  content: "";
+}
+
+.condominium-placeholder.is-visible {
+  opacity: 1;
+}
+
+.condominium-placeholder span {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 1.25rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.42rem 0.78rem;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.condominium-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 23, 43, 0.08) 22%, rgba(10, 23, 43, 0.84) 100%),
+    linear-gradient(180deg, transparent 48%, rgba(10, 23, 43, 0.3));
+}
+
+.condominium-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 1.35rem;
+  color: white;
+  transform: translateY(calc(100% - 4.9rem));
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.condominium-slide:hover .condominium-caption {
+  transform: translateY(0);
+}
+
+.condominium-caption h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.18;
 }
 
-.condominium-card p {
-  margin-top: 0.7rem;
-  color: var(--foreground);
+.condominium-caption p {
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.92rem;
   font-weight: 600;
 }
 
-.condominium-card > span:last-child {
+.condominium-caption span {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.55rem;
-  color: var(--muted);
+  gap: 0.42rem;
+  margin-top: 0.42rem;
+  color: rgba(255, 255, 255, 0.76);
   font-size: 0.82rem;
 }
 
-.condominium-card > span:last-child svg {
+.condominium-caption svg {
   height: 0.95rem;
   width: 0.95rem;
   flex: none;
-  stroke: var(--gold-strong);
+  stroke: var(--gold);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.8;
 }
 
 .contact-section {
-  padding-block: clamp(4.5rem, 7vw, 6.5rem);
+  padding-block: clamp(4.25rem, 6.5vw, 6rem);
 }
 
 .contact-panel {
@@ -584,62 +732,18 @@ body {
 
 .footer-shell {
   background: var(--primary-deep);
-  padding-block: 3.2rem 2.2rem;
+  padding-block: 2.35rem;
 }
 
-.footer-title {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.footer-link {
-  color: rgba(255, 255, 255, 0.64);
-  font-size: 0.92rem;
-  transition: color 180ms ease;
-}
-
-.footer-link:hover {
-  color: white;
-}
-
-.floating-whatsapp {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 40;
-  display: inline-flex;
+.footer-legal {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(10, 23, 43, 0.92);
-  padding: 0.82rem 1rem;
-  color: white;
-  font-size: 0.88rem;
-  font-weight: 600;
-  box-shadow: 0 18px 38px rgba(10, 23, 43, 0.22);
-  backdrop-filter: blur(14px);
-  transition:
-    background-color 220ms ease,
-    transform 220ms ease,
-    box-shadow 220ms ease;
-}
-
-.floating-whatsapp:hover {
-  background: rgba(10, 23, 43, 1);
-  box-shadow: 0 22px 44px rgba(10, 23, 43, 0.28);
-  transform: translateY(-2px);
-}
-
-.floating-whatsapp-dot {
-  height: 0.55rem;
-  width: 0.55rem;
-  border-radius: 999px;
-  background: var(--gold);
-  box-shadow: 0 0 0 0.28rem rgba(211, 176, 111, 0.12);
+  gap: 0.45rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .motion-ready .reveal {
@@ -681,15 +785,24 @@ body {
     padding: 1.85rem;
   }
 
-  .floating-whatsapp {
-    right: 1.5rem;
-    bottom: 1.5rem;
+  .condominium-track {
+    gap: 1.25rem;
+  }
+
+  .condominium-slide {
+    min-width: 20rem;
+    flex-basis: 20rem;
   }
 }
 
 @media (min-width: 1024px) {
   .menu-button {
     display: none;
+  }
+
+  .condominium-slide {
+    min-width: 22rem;
+    flex-basis: 22rem;
   }
 }
 
@@ -707,13 +820,36 @@ body {
 
   .hero-overlay {
     background:
-      linear-gradient(180deg, rgba(10, 23, 43, 0.9) 0%, rgba(10, 23, 43, 0.82) 56%, rgba(10, 23, 43, 0.9) 100%),
+      linear-gradient(180deg, rgba(10, 23, 43, 0.9) 0%, rgba(14, 32, 58, 0.84) 56%, rgba(10, 23, 43, 0.92) 100%),
       linear-gradient(180deg, rgba(10, 23, 43, 0.22), rgba(10, 23, 43, 0.38));
   }
 
   .objective-section::before,
   .contact-section::before {
     background-size: 3.2rem 3.2rem;
+  }
+
+  .objective-card {
+    border-radius: 1.35rem;
+  }
+
+  .objective-target {
+    top: auto;
+    right: 0.6rem;
+    bottom: 0.4rem;
+    opacity: 0.1;
+    transform: none;
+  }
+
+  .condominium-arrow {
+    height: 2.65rem;
+    width: 2.65rem;
+  }
+}
+
+@media (hover: none), (max-width: 767px) {
+  .condominium-caption {
+    transform: translateY(0);
   }
 }
 

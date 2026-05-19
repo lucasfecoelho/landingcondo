@@ -8,6 +8,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 .chrome-qa/
-devserver.log
+devserver*.log
+lovable-ref/
 qa-*.png
 tsconfig.tsbuildinfo

@@ -27,8 +27,7 @@ export function Header() {
   return (
     <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
       <div className="container-shell flex min-h-[4.75rem] items-center justify-between gap-3 lg:min-h-20">
-        <a href="#inicio" className="flex min-w-0 items-center gap-3" aria-label="START Gestão Condominial">
-          <span className="brand-mark">S</span>
+        <a href="#inicio" className="min-w-0 leading-tight" aria-label="START Gestão Condominial">
           <span className="min-w-0 leading-tight">
             <span className="block font-[family-name:var(--font-display)] text-lg font-semibold tracking-[0.16em] text-white transition lg:text-[1.08rem]">
               START

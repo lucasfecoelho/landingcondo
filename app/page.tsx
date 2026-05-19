@@ -1,65 +1,57 @@
 import Image from "next/image";
-import karinaPhoto from "../karinafoto.png";
-import patriciaPhoto from "../patriciafoto.png";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { ActivityCard } from "@/components/ActivityCard";
-import { Button } from "@/components/Button";
+import { CondominiumCarousel, type Condominium } from "@/components/CondominiumCarousel";
 import { ContactCTA } from "@/components/ContactCTA";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { TeamCard } from "@/components/TeamCard";
-import { siteConfig } from "@/lib/site";
-
-const highlights = [
-  "Transparência total",
-  "Atendimento humanizado",
-  "Valorização do patrimônio",
-  "Gestão estratégica",
-];
 
 const activities = [
   {
-    title: "Gestão Administrativa",
+    title: "Gestão administrativa",
     icon: "document" as const,
     items: [
       "Convocação de assembleias ordinárias e extraordinárias",
-      "Representação legal do condomínio",
-      "Cumprimento da convenção, regimento interno e decisões de assembleia",
+      "Cumprimento da convenção, regimento interno e decisões de assembleias",
+      "Prestação de contas",
       "Participação em reuniões do conselho",
+      "Elaboração de orçamento anual",
     ],
   },
   {
-    title: "Gestão Financeira",
+    title: "Gestão financeira e jurídica",
     icon: "finance" as const,
     items: [
-      "Elaboração de orçamento anual",
-      "Cobrança de contribuições condominiais",
+      "Cobrança das contribuições condominiais",
       "Aplicação e cobrança de multas",
-      "Prestação de contas à assembleia",
-      "Redução da inadimplência",
+      "Medidas administrativas e jurídicas para redução da inadimplência",
+      "Representação do condomínio em juízo ou fora dele",
     ],
   },
   {
-    title: "Manutenção e Segurança",
+    title: "Manutenção e segurança",
     icon: "maintenance" as const,
     items: [
       "Conservação e manutenção das áreas comuns",
       "Plano de manutenção preventiva",
-      "Seguro da edificação",
+      "Realização do seguro da edificação",
       "Cumprimento das normas da ABNT 16.280",
-      "Segurança dos moradores",
+      "Ações voltadas à segurança dos moradores",
     ],
   },
   {
-    title: "Relacionamento e Convivência",
+    title: "Pessoas, contratos e convivência",
     icon: "people" as const,
     items: [
-      "Gestão de funcionários próprios e terceirizados",
+      "Gerenciamento de equipes próprias ou terceirizadas",
+      "Gerenciamento de contratos",
       "Mediação de conflitos",
-      "Gestão de contratos",
       "Campanhas educativas",
+      "Proposição de soluções para melhorar a convivência",
     ],
   },
 ];
@@ -78,7 +70,7 @@ const team = [
       "Workshop de síndicos e síndicos profissionais",
       "Curso de formação de síndico profissional",
     ],
-    image: karinaPhoto,
+    image: "/images/karinafoto.png",
     imagePosition: "center center",
   },
   {
@@ -93,39 +85,38 @@ const team = [
       "Curso Compliance",
       "Curso de Dicas de Engenharia e Arquitetura",
     ],
-    image: patriciaPhoto,
+    image: "/images/patriciafoto.png",
     imagePosition: "center top",
   },
 ];
 
-const condominiums = [
-  { name: "EASY", units: "36 unidades · 8 lojas", location: "Noroeste" },
-  { name: "Condomínio GET", units: "36 unidades", location: "Park Sul · Residencial e comercial" },
-  { name: "Condomínio Essence", units: "33 unidades", location: "Park Sul" },
-  { name: "Condomínio Persona Versare", units: "84 unidades", location: "310 Noroeste" },
-  { name: "Condomínio Mykonos", units: "60 unidades", location: "109 Noroeste" },
-  { name: "Condomínio Urbam", units: "84 unidades", location: "306 Noroeste" },
-  { name: "Condomínio Contemporâneo", units: "60 unidades", location: "106 Noroeste" },
-  { name: "Residencial Diamond", units: "48 unidades", location: "Quadra 208 · Águas Claras" },
-  { name: "Residencial Via Classique", units: "120 unidades · Área de lazer", location: "SQNW 107 Noroeste" },
-  { name: "Residencial Sophistique", units: "24 unidades", location: "SQNW 111, bloco F · Noroeste" },
-  { name: "Residencial Gran Reserva Biografia", units: "24 unidades", location: "SQNW 108, bloco E · Noroeste" },
-  { name: "Residencial Bonanza", units: "8 unidades", location: "Park Way" },
+const condominiumData = [
+  { name: "EASY", units: "36 unidades · 8 lojas", location: "Noroeste", image: "/images/condominios/easy.jpg" },
+  { name: "Condomínio GET", units: "36 unidades", location: "Park Sul · Residencial e comercial", image: "/images/condominios/get.jpg" },
+  { name: "Condomínio Essence", units: "33 unidades", location: "Park Sul", image: "/images/condominios/essence.jpg" },
+  { name: "Condomínio Persona Versare", units: "84 unidades", location: "310 Noroeste", image: "/images/condominios/persona-versare.jpg" },
+  { name: "Condomínio Mykonos", units: "60 unidades", location: "109 Noroeste", image: "/images/condominios/mykonos.jpg" },
+  { name: "Condomínio Urbam", units: "84 unidades", location: "306 Noroeste", image: "/images/condominios/urbam.jpg" },
+  { name: "Condomínio Contemporâneo", units: "60 unidades", location: "106 Noroeste", image: "/images/condominios/contemporaneo.jpg" },
+  { name: "Residencial Diamond", units: "48 unidades", location: "Quadra 208 · Águas Claras", image: "/images/condominios/diamond.jpg" },
+  { name: "Residencial Via Classique", units: "120 unidades · Área de lazer", location: "SQNW 107 Noroeste", image: "/images/condominios/via-classique.jpg" },
+  { name: "Residencial Sophistique", units: "24 unidades", location: "SQNW 111, bloco F · Noroeste", image: "/images/condominios/sophistique.jpg" },
+  { name: "Residencial Gran Reserva Biografia", units: "24 unidades", location: "SQNW 108, bloco E · Noroeste", image: "/images/condominios/gran-reserva-biografia.jpg" },
+  { name: "Residencial Bonanza", units: "8 unidades", location: "Park Way", image: "/images/condominios/bonanza.jpg" },
 ];
 
-function BuildingIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M4 20h16M7 20V5h10v15M10 8h1M13 8h1M10 12h1M13 12h1M10 16h1M13 16h1" />
-    </svg>
-  );
-}
+const condominiums: Condominium[] = condominiumData.map((condominium) => ({
+  ...condominium,
+  hasImage: existsSync(join(process.cwd(), "public", condominium.image.replace(/^\//, ""))),
+}));
 
-function PinIcon() {
+function TargetIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 10.5c0 5.25-8 10.5-8 10.5S4 15.75 4 10.5a8 8 0 1 1 16 0Z" />
-      <circle cx="12" cy="10.5" r="2.5" />
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.8" />
+      <circle cx="12" cy="12" r="1.45" />
+      <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" />
     </svg>
   );
 }
@@ -156,16 +147,7 @@ export default function Home() {
                 <p className="mt-6 max-w-2xl text-[1rem] leading-7 text-white/82 sm:text-[1.15rem] sm:leading-8">
                   A START Gestão Condominial oferece uma administração profissional, humanizada e estratégica para condomínios residenciais, comerciais e mistos.
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" className="w-full sm:w-auto">
-                    Solicitar proposta
-                  </Button>
-                  <Button href="#atuacao" variant="inverted" className="w-full sm:w-auto">
-                    Conheça nossa atuação
-                  </Button>
-                </div>
-
-                <div className="mt-12 grid gap-4 sm:max-w-xl sm:grid-cols-3">
+                <div className="mt-10 grid gap-4 sm:max-w-xl sm:grid-cols-3">
                   {[
                     { value: "12+", label: "Condomínios" },
                     { value: "700+", label: "Unidades" },
@@ -189,7 +171,7 @@ export default function Home() {
                 eyebrow="Quem somos"
                 title={
                   <>
-                    Uma gestão idealizada por <span className="text-[var(--gold-strong)] italic">síndicas profissionais</span>.
+                    Uma gestão próxima, técnica e comprometida com <span className="text-[var(--gold-strong)] italic">pessoas e patrimônio</span>.
                   </>
                 }
               />
@@ -197,22 +179,24 @@ export default function Home() {
 
             <Reveal direction="right" delay={100}>
               <div className="about-copy">
-                <p>
-                  A <strong>START Gestão Condominial</strong> foi idealizada por síndicas profissionais que, ao longo dos anos, se capacitaram por meio de cursos, workshops e congressos, desenvolvendo ampla experiência na gestão de condomínios e pessoas.
-                </p>
-                <p>
-                  Atuamos com foco em excelência, transparência e valorização do patrimônio condominial. Somos uma empresa inovadora e especializada em administração de condomínios residenciais, comerciais e mistos.
-                </p>
+                <div className="about-feature">
+                  <span className="about-kicker">Apresentação</span>
+                  <p>
+                    A <strong>Start Gestão Condominial</strong> é uma empresa especializada em administração e sindicatura profissional para condomínios residenciais, comerciais e mistos. Com uma atuação moderna, próxima e estratégica, a Start une conhecimento técnico, experiência prática e cuidado humano para oferecer uma gestão condominial mais eficiente, transparente e segura.
+                  </p>
+                  <p>
+                    Mais do que administrar rotinas, a Start trabalha para preservar e valorizar o patrimônio dos condôminos, fortalecer a convivência e contribuir para que cada condomínio seja um lugar melhor para se viver.
+                  </p>
+                </div>
 
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  {highlights.map((highlight, index) => (
-                    <Reveal key={highlight} delay={index * 60}>
-                      <div className="highlight-card">
-                        <span>0{index + 1}</span>
-                        <strong>{highlight}</strong>
-                      </div>
-                    </Reveal>
-                  ))}
+                <div className="about-feature about-feature-muted">
+                  <span className="about-kicker">Nossa essência</span>
+                  <p>
+                    A Start Gestão Condominial nasceu da experiência de profissionais que encontraram na gestão de condomínios uma forma de unir técnica, responsabilidade e cuidado com pessoas. Ao longo dos anos, suas sócias se especializaram por meio de cursos, workshops, congressos e vivência prática no mercado condominial, consolidando uma atuação pautada pela organização, transparência e compromisso com cada condomínio atendido.
+                  </p>
+                  <p>
+                    Mais do que administrar rotinas, a Start atua para preservar o patrimônio, melhorar a convivência e tornar o condomínio um ambiente mais seguro, organizado e agradável para todos.
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -220,26 +204,32 @@ export default function Home() {
         </section>
 
         <section className="objective-section section-padding">
-          <div className="container-shell relative z-10 max-w-5xl text-center">
+          <div className="container-shell relative z-10">
             <Reveal>
-              <SectionTitle
-                eyebrow="Nosso objetivo"
-                tone="light"
-                align="center"
-                title={
-                  <>
-                    Atuação técnica, transparente e alinhada aos <span className="text-[var(--gold)] italic">interesses do condomínio</span>.
-                  </>
-                }
-                description={
-                  <p>
-                    Prestar serviço de síndico profissional nos termos da lei, convenção e regimento interno do condomínio, garantindo uma atuação técnica, transparente e alinhada aos interesses do condomínio.
-                  </p>
-                }
-              />
-              <p className="mx-auto mt-8 max-w-3xl border-t border-white/14 pt-6 text-sm leading-7 text-white/68 sm:text-base">
-                As atividades operacionais podem ser executadas pelas profissionais do quadro da empresa, sendo a representação legal exercida pela profissional definida em conjunto com o contratante.
-              </p>
+              <div className="objective-card">
+                <span className="objective-target">
+                  <TargetIcon />
+                </span>
+                <SectionTitle
+                  eyebrow="Nosso objetivo"
+                  tone="light"
+                  title={
+                    <>
+                      Sindicatura profissional estruturada, segura e <span className="text-[var(--gold)] italic">alinhada à realidade do condomínio</span>.
+                    </>
+                  }
+                  description={
+                    <>
+                      <p>
+                        O objetivo da Start Gestão Condominial é oferecer um serviço de sindicatura profissional estruturado, seguro e alinhado à legislação, à convenção e ao regimento interno de cada condomínio.
+                      </p>
+                      <p>
+                        A empresa atua com suporte técnico e operacional por meio de suas profissionais, garantindo organização nas rotinas, acompanhamento das demandas e representação legal definida em conjunto com o contratante.
+                      </p>
+                    </>
+                  }
+                />
+              </div>
             </Reveal>
           </div>
         </section>
@@ -308,23 +298,9 @@ export default function Home() {
               />
             </Reveal>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {condominiums.map((condominium, index) => (
-                <Reveal key={condominium.name} delay={index * 45}>
-                  <article className="condominium-card">
-                    <span className="condominium-icon">
-                      <BuildingIcon />
-                    </span>
-                    <h3>{condominium.name}</h3>
-                    <p>{condominium.units}</p>
-                    <span>
-                      <PinIcon />
-                      {condominium.location}
-                    </span>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={80}>
+              <CondominiumCarousel condominiums={condominiums} />
+            </Reveal>
           </div>
         </section>
 
@@ -333,7 +309,6 @@ export default function Home() {
         </Reveal>
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </>
   );
 }

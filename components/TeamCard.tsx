@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
@@ -9,7 +9,7 @@ type TeamCardProps = {
   role: string;
   description: string;
   courses: string[];
-  image: StaticImageData;
+  image: string;
   imagePosition?: string;
 };
 
@@ -88,7 +88,7 @@ export function TeamCard({
             className="object-cover transition duration-700 group-hover:scale-[1.04]"
             style={{ objectPosition: imagePosition }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(12,24,44,0.62)] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(22,9,31,0.62)] to-transparent" />
         </div>
 
         <div className="px-1 pt-5 sm:px-2 sm:pt-6">
