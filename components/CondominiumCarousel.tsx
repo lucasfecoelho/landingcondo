@@ -44,7 +44,7 @@ function CondominiumSlide({ condominium }: { condominium: Condominium }) {
           src={condominium.image}
           alt={condominium.name}
           fill
-          sizes="(min-width: 1024px) 24rem, (min-width: 640px) 20rem, 82vw"
+          sizes="(min-width: 1280px) 30rem, (min-width: 1024px) 28rem, (min-width: 640px) 22rem, 86vw"
           className="condominium-photo"
           onError={() => setImageFailed(true)}
         />

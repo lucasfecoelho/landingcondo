@@ -42,16 +42,22 @@ export function ContactCTA() {
 
   return (
     <section id="contato" className="contact-section scroll-mt-24">
-      <div className="container-shell relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
-        <div>
-          <p className="eyebrow text-[var(--gold)]">Contato</p>
-          <h2 className="mt-4 max-w-xl font-[family-name:var(--font-display)] text-[1.95rem] leading-[1.08] text-white sm:text-[2.4rem] lg:text-[2.85rem]">
+      <div className="contact-layout container-shell">
+        <div className="contact-copy">
+          <p className="eyebrow">Contato</p>
+          <h2>
             Entre em contato e <span className="text-[var(--gold)] italic">solicite sua proposta</span>
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-7 text-white/78 sm:text-[1.05rem] sm:leading-8">
+          <p>
             Fale com a START Gestão Condominial e descubra como uma gestão profissional pode transformar a rotina do seu condomínio.
           </p>
-          <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" className="mt-7 w-full sm:w-auto">
+          <Button
+            href={siteConfig.whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            variant="inverted"
+            className="contact-cta-button"
+          >
             Falar no WhatsApp
           </Button>
         </div>

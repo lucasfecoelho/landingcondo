@@ -54,17 +54,17 @@ export function TeamCard({
             <button type="button" className="resume-close" aria-label="Fechar currículo" onClick={() => setIsOpen(false)}>
               ×
             </button>
-            <p className="eyebrow text-[var(--gold-strong)]">{role}</p>
-            <h4 id={titleId} className="mt-3 font-[family-name:var(--font-display)] text-[1.8rem] leading-tight text-[var(--foreground)]">
+            <p className="resume-role eyebrow">{role}</p>
+            <h4 id={titleId} className="resume-title">
               {name}
             </h4>
-            <p className="mt-4 leading-7 text-[var(--muted)]">{description}</p>
-            <div className="mt-6 border-t border-[var(--line)] pt-6">
+            <p className="resume-description">{description}</p>
+            <div className="resume-courses">
               <h5 className="font-[family-name:var(--font-display)] text-xl text-[var(--foreground)]">Formação e cursos</h5>
-              <ul className="mt-4 grid gap-3">
+              <ul>
                 {courses.map((course) => (
-                  <li key={course} className="flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
-                    <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--gold)]" />
+                  <li key={course}>
+                    <span aria-hidden="true" />
                     <span>{course}</span>
                   </li>
                 ))}
@@ -79,23 +79,23 @@ export function TeamCard({
   return (
     <>
       <article className="team-card group">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-[1.45rem] bg-[var(--surface-muted)]">
+        <div className="team-photo">
           <Image
             src={image}
             alt={name}
             fill
             sizes="(min-width: 1024px) 36vw, (min-width: 768px) 44vw, 100vw"
-            className="object-cover transition duration-700 group-hover:scale-[1.04]"
+            className="team-photo-image"
             style={{ objectPosition: imagePosition }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(23,5,31,0.62)] to-transparent" />
+          <div className="team-photo-shade" />
         </div>
 
-        <div className="px-1 pt-5 sm:px-2 sm:pt-6">
-          <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] font-semibold leading-7 text-[var(--foreground)]">{name}</h3>
-          <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold-strong)]">{role}</p>
-          <p className="mt-5 leading-7 text-[var(--muted)]">{description}</p>
-          <button type="button" className="resume-button mt-6" onClick={() => setIsOpen(true)}>
+        <div className="team-card-body">
+          <h3>{name}</h3>
+          <p className="team-role">{role}</p>
+          <p className="team-description">{description}</p>
+          <button type="button" className="resume-button" onClick={() => setIsOpen(true)}>
             Ver currículo
           </button>
         </div>

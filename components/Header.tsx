@@ -35,18 +35,18 @@ export function Header() {
 
   return (
     <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
-      <div className="container-shell flex min-h-[4.75rem] items-center justify-between gap-3 lg:min-h-20">
+      <div className="header-inner container-shell">
         <a href="#inicio" className="brand-link min-w-0" aria-label="START Gestão Condominial">
           <BrandSymbol />
-          <span className="min-w-0 leading-tight">
-            <span className="block font-[family-name:var(--font-display)] text-lg font-semibold tracking-[0.16em] text-white transition lg:text-[1.08rem]">
+          <span className="brand-text min-w-0">
+            <span className="brand-name">
               START
             </span>
             <span className="block text-[0.67rem] uppercase tracking-[0.22em] text-white/68">Gestão Condominial</span>
           </span>
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
+        <nav className="site-nav hidden lg:flex" aria-label="Principal">
           {navigation.map((item) => (
             <a key={item.href} href={item.href} className="nav-link">
               {item.label}
@@ -55,7 +55,7 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer">
+          <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" variant="inverted">
             Solicitar proposta
           </Button>
         </div>
@@ -82,13 +82,13 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="border-b border-white/10 py-3.5 text-sm text-white/78 transition hover:text-white last:border-b-0"
+              className="mobile-nav-link"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
             </a>
           ))}
-          <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" className="mt-3 w-full">
+          <Button href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" variant="inverted" className="mt-3 w-full">
             Solicitar proposta
           </Button>
         </nav>

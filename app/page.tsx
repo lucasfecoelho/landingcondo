@@ -129,6 +129,17 @@ function BrandSymbol() {
   );
 }
 
+function HeroPrinciples() {
+  return (
+    <aside className="hero-principles" aria-label="Pilares de gestao">
+      <span className="hero-principles-line" aria-hidden="true" />
+      {["Rotina", "Cuidado", "Acompanhamento"].map((item) => (
+        <span key={item}>{item}</span>
+      ))}
+    </aside>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -141,13 +152,14 @@ export default function Home() {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-[58%_center] lg:object-center"
           />
           <div className="hero-overlay" />
 
-          <div className="container-shell relative z-10 flex min-h-[46rem] items-center py-28 sm:min-h-[48rem] lg:min-h-screen">
-            <Reveal direction="left">
-              <div className="max-w-4xl text-white">
+          <div className="hero-shell container-shell">
+            <div className="hero-layout">
+              <Reveal direction="left">
+                <div className="hero-copy text-white">
                 <div className="hero-brand-lockup">
                   <BrandSymbol />
                   <span>
@@ -156,13 +168,13 @@ export default function Home() {
                   </span>
                 </div>
                 <span className="hero-badge">Brasília · DF</span>
-                <h1 className="mt-6 max-w-4xl font-[family-name:var(--font-display)] text-[2.35rem] leading-[1.02] sm:text-[3.15rem] lg:text-[4.35rem]">
+                <h1 className="hero-title">
                   Síndico profissional em Brasília com <span className="text-[var(--gold)] italic">excelência</span> em gestão condominial
                 </h1>
-                <p className="mt-6 max-w-2xl text-[1rem] leading-7 text-white/82 sm:text-[1.15rem] sm:leading-8">
+                <p className="hero-description">
                   A START Gestão Condominial oferece uma administração profissional, humanizada e estratégica para condomínios residenciais, comerciais e mistos.
                 </p>
-                <div className="mt-10 grid gap-4 sm:max-w-xl sm:grid-cols-3">
+                <div className="hero-stats">
                   {[
                     { value: "12+", label: "Condomínios" },
                     { value: "700+", label: "Unidades" },
@@ -175,12 +187,15 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </Reveal>
+              </Reveal>
+
+              <HeroPrinciples />
+            </div>
           </div>
         </section>
 
-        <section id="sobre" className="section-padding scroll-mt-24 bg-[var(--background)]">
-          <div className="container-shell grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start lg:gap-16">
+        <section id="sobre" className="about-section section-padding scroll-mt-24">
+          <div className="about-grid container-shell">
             <Reveal direction="left">
               <SectionTitle
                 eyebrow="Quem somos"
@@ -209,7 +224,7 @@ export default function Home() {
         </section>
 
         <section className="objective-section section-padding">
-          <div className="container-shell relative z-10">
+          <div className="objective-shell container-shell">
             <Reveal>
               <span className="objective-target">
                 <TargetIcon />
@@ -239,7 +254,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="atuacao" className="section-padding scroll-mt-24 bg-[var(--surface-muted)]">
+        <section id="atuacao" className="activity-section section-padding scroll-mt-24">
           <div className="container-shell">
             <Reveal>
               <SectionTitle
@@ -254,9 +269,9 @@ export default function Home() {
               />
             </Reveal>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:gap-6">
+            <div className="activity-grid">
               {activities.map((activity, index) => (
-                <Reveal key={activity.title} delay={index * 70}>
+                <Reveal key={activity.title} delay={index * 45}>
                   <ActivityCard {...activity} />
                 </Reveal>
               ))}
@@ -264,7 +279,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="equipe" className="section-padding scroll-mt-24 bg-[var(--background)]">
+        <section id="equipe" className="team-section section-padding scroll-mt-24">
           <div className="container-shell">
             <Reveal>
               <SectionTitle
@@ -278,9 +293,9 @@ export default function Home() {
               />
             </Reveal>
 
-            <div className="mx-auto mt-10 grid max-w-5xl gap-7 md:grid-cols-2 lg:gap-10">
+            <div className="team-grid">
               {team.map((member, index) => (
-                <Reveal key={member.name} delay={index * 100}>
+                <Reveal key={member.name} delay={index * 60}>
                   <TeamCard {...member} />
                 </Reveal>
               ))}
@@ -288,7 +303,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="condominios" className="section-padding scroll-mt-24 bg-[var(--surface-muted)]">
+        <section id="condominios" className="portfolio-section section-padding scroll-mt-24">
           <div className="container-shell">
             <Reveal>
               <SectionTitle

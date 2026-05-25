@@ -38,17 +38,17 @@ function ActivityIcon({ icon }: { icon: ActivityCardProps["icon"] }) {
 
 export function ActivityCard({ title, items, icon }: ActivityCardProps) {
   return (
-    <article className="activity-card">
-      <div className="flex items-center gap-4 border-b border-[var(--line)] pb-5">
+    <article className="activity-card" data-activity={icon}>
+      <div className="activity-card-header">
         <span className="activity-icon">
           <ActivityIcon icon={icon} />
         </span>
-        <h3 className="font-[family-name:var(--font-display)] text-[1.45rem] leading-tight text-[var(--foreground)]">{title}</h3>
+        <h3>{title}</h3>
       </div>
-      <ul className="mt-5 grid gap-3">
+      <ul className="activity-list">
         {items.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-sm leading-6 text-[var(--muted)]">
-            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-[var(--gold)]" />
+          <li key={item}>
+            <span aria-hidden="true" />
             <span>{item}</span>
           </li>
         ))}
