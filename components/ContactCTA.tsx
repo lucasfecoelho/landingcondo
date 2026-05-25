@@ -1,11 +1,11 @@
 import { Button } from "./Button";
 import { siteConfig } from "@/lib/site";
 
-function ChatIcon() {
+function WhatsAppIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M20 11.5a7.75 7.75 0 0 1-8 7.5 9.2 9.2 0 0 1-3.32-.61L4 20l1.66-3.71A7.24 7.24 0 0 1 4 11.5 7.75 7.75 0 0 1 12 4a7.75 7.75 0 0 1 8 7.5Z" />
-      <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" />
+      <path d="M20 11.7a7.8 7.8 0 0 1-11.4 6.9L4 20l1.48-4.35A7.78 7.78 0 1 1 20 11.7Z" />
+      <path d="M9 8.6c.2-.42.42-.43.7-.43h.5c.16 0 .4.06.61.49.22.52.74 1.8.8 1.93.07.13.1.29.02.46-.2.42-.42.66-.72 1 .52.9 1.25 1.63 2.16 2.13.36-.45.58-.72.92-.72.17 0 .33.04.48.12.16.08 1.5.72 1.75.85.26.13.43.2.49.32.06.12.06.72-.17 1.28-.24.57-1.32 1.1-1.83 1.14-.47.04-1.08.06-1.74-.1-.4-.1-.92-.3-1.58-.58-2.78-1.2-4.6-3.98-4.74-4.16-.14-.18-1.13-1.5-1.13-2.86 0-1.35.72-2.02.98-2.29.25-.27.55-.34.74-.34Z" />
     </svg>
   );
 }
@@ -38,6 +38,8 @@ function PhoneIcon() {
 }
 
 export function ContactCTA() {
+  const contactPhones = siteConfig.phones;
+
   return (
     <section id="contato" className="contact-section scroll-mt-24">
       <div className="container-shell relative grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
@@ -55,15 +57,27 @@ export function ContactCTA() {
         </div>
 
         <div className="contact-panel">
-          <a href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" className="contact-row">
-            <span className="contact-icon">
-              <ChatIcon />
+          <a href={siteConfig.whatsappHref} target="_blank" rel="noreferrer" className="contact-row contact-row-primary">
+            <span className="contact-icon contact-icon-whatsapp">
+              <WhatsAppIcon />
             </span>
             <span>
-              <span className="contact-label">WhatsApp principal</span>
+              <span className="contact-label">WhatsApp</span>
               <span className="contact-value">{siteConfig.whatsappDisplay}</span>
             </span>
           </a>
+
+          {contactPhones.map((phone) => (
+            <a key={phone.href} href={phone.href} className="contact-row">
+              <span className="contact-icon">
+                <PhoneIcon />
+              </span>
+              <span>
+                <span className="contact-label">Telefone</span>
+                <span className="contact-value">{phone.display}</span>
+              </span>
+            </a>
+          ))}
 
           <a href={siteConfig.instagramHref} target="_blank" rel="noreferrer" className="contact-row">
             <span className="contact-icon">
@@ -84,24 +98,6 @@ export function ContactCTA() {
               <span className="contact-value">{siteConfig.email}</span>
             </span>
           </a>
-
-          <div className="contact-row items-start">
-            <span className="contact-icon mt-0.5">
-              <PhoneIcon />
-            </span>
-            <span>
-              <span className="contact-label">Telefones adicionais</span>
-              <span className="mt-2 flex flex-col gap-1.5">
-                {siteConfig.phones
-                  .filter((phone) => phone.display !== siteConfig.whatsappDisplay)
-                  .map((phone) => (
-                    <a key={phone.href} href={phone.href} className="contact-value transition hover:text-white">
-                      {phone.display}
-                    </a>
-                  ))}
-              </span>
-            </span>
-          </div>
         </div>
       </div>
     </section>

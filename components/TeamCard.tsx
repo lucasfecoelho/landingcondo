@@ -88,7 +88,7 @@ export function TeamCard({
             className="object-cover transition duration-700 group-hover:scale-[1.04]"
             style={{ objectPosition: imagePosition }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(22,9,31,0.62)] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[rgba(23,5,31,0.62)] to-transparent" />
         </div>
 
         <div className="px-1 pt-5 sm:px-2 sm:pt-6">

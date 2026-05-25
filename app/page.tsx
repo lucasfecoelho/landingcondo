@@ -116,8 +116,16 @@ function TargetIcon() {
       <circle cx="12" cy="12" r="8.5" />
       <circle cx="12" cy="12" r="4.8" />
       <circle cx="12" cy="12" r="1.45" />
-      <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3" />
     </svg>
+  );
+}
+
+function BrandSymbol() {
+  return (
+    <span className="brand-symbol brand-symbol-hero" aria-hidden="true">
+      <span className="brand-tower brand-tower-left" />
+      <span className="brand-tower brand-tower-right" />
+    </span>
   );
 }
 
@@ -140,6 +148,13 @@ export default function Home() {
           <div className="container-shell relative z-10 flex min-h-[46rem] items-center py-28 sm:min-h-[48rem] lg:min-h-screen">
             <Reveal direction="left">
               <div className="max-w-4xl text-white">
+                <div className="hero-brand-lockup">
+                  <BrandSymbol />
+                  <span>
+                    <strong>START</strong>
+                    <small>Gestão Condominial</small>
+                  </span>
+                </div>
                 <span className="hero-badge">Brasília · DF</span>
                 <h1 className="mt-6 max-w-4xl font-[family-name:var(--font-display)] text-[2.35rem] leading-[1.02] sm:text-[3.15rem] lg:text-[4.35rem]">
                   Síndico profissional em Brasília com <span className="text-[var(--gold)] italic">excelência</span> em gestão condominial
@@ -180,22 +195,12 @@ export default function Home() {
             <Reveal direction="right" delay={100}>
               <div className="about-copy">
                 <div className="about-feature">
-                  <span className="about-kicker">Apresentação</span>
+                  <span className="about-kicker">Apresentação institucional</span>
                   <p>
-                    A <strong>Start Gestão Condominial</strong> é uma empresa especializada em administração e sindicatura profissional para condomínios residenciais, comerciais e mistos. Com uma atuação moderna, próxima e estratégica, a Start une conhecimento técnico, experiência prática e cuidado humano para oferecer uma gestão condominial mais eficiente, transparente e segura.
+                    A <strong>START Gestão Condominial</strong> é uma empresa especializada em administração e sindicatura profissional para condomínios residenciais, comerciais e mistos. Com uma atuação moderna, próxima e estratégica, une conhecimento técnico, experiência prática e cuidado humano para oferecer uma gestão mais eficiente, transparente e segura.
                   </p>
                   <p>
-                    Mais do que administrar rotinas, a Start trabalha para preservar e valorizar o patrimônio dos condôminos, fortalecer a convivência e contribuir para que cada condomínio seja um lugar melhor para se viver.
-                  </p>
-                </div>
-
-                <div className="about-feature about-feature-muted">
-                  <span className="about-kicker">Nossa essência</span>
-                  <p>
-                    A Start Gestão Condominial nasceu da experiência de profissionais que encontraram na gestão de condomínios uma forma de unir técnica, responsabilidade e cuidado com pessoas. Ao longo dos anos, suas sócias se especializaram por meio de cursos, workshops, congressos e vivência prática no mercado condominial, consolidando uma atuação pautada pela organização, transparência e compromisso com cada condomínio atendido.
-                  </p>
-                  <p>
-                    Mais do que administrar rotinas, a Start atua para preservar o patrimônio, melhorar a convivência e tornar o condomínio um ambiente mais seguro, organizado e agradável para todos.
+                    A empresa nasceu da experiência de profissionais que encontraram na gestão condominial uma forma de unir responsabilidade, organização e cuidado com pessoas. Mais do que administrar rotinas, a START atua para preservar o patrimônio, melhorar a convivência e tornar cada condomínio um ambiente mais seguro, organizado e agradável para todos.
                   </p>
                 </div>
               </div>
@@ -206,10 +211,10 @@ export default function Home() {
         <section className="objective-section section-padding">
           <div className="container-shell relative z-10">
             <Reveal>
+              <span className="objective-target">
+                <TargetIcon />
+              </span>
               <div className="objective-card">
-                <span className="objective-target">
-                  <TargetIcon />
-                </span>
                 <SectionTitle
                   eyebrow="Nosso objetivo"
                   tone="light"
